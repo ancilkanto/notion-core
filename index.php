@@ -76,8 +76,6 @@ function quadnotion_addon_admin_scripts(){
 function quadnotion_addon_admin_styles(){
 	
 	
-	wp_enqueue_style("jquery-ui-style", 'http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
-	
 	wp_enqueue_style("quadnotion-main-style", plugins_url('css/main.css' , __FILE__ ));
 }
 
