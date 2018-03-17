@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Quadnotion Addon
+Plugin Name: Notion Core
 Plugin URI: http://www.quadnotion.com
-Description: Addon Plugin devloped by Quadnotion
+Description: Plugin devloped by Quadnotion for Notion multipurpose theme
 Author: Quadnotion
 Author URI: http://www.quadnotion.com
 Version: 1.0
