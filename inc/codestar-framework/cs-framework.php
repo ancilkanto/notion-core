@@ -6,7 +6,6 @@
  * Codestar Framework
  * A Lightweight and easy-to-use WordPress Options Framework
  *
- * Plugin Name: Codestar Framework
  * Plugin URI: http://codestarframework.com/
  * Author: Codestar
  * Author URI: http://codestarlive.com/
