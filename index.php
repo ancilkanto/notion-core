@@ -39,7 +39,7 @@ require_once QCORE_PATH .'/inc/codestar-framework/cs-framework.php';
 
 
 /**
- *Show/Hide Codestar Framework Examples
+ *Show/Hide Codestar Framework
  *
  * @since 1.0
  *
@@ -81,6 +81,9 @@ function quadnotion_addon_admin_styles(){
 	wp_enqueue_style("quadnotion-main-style", plugins_url('css/main.css' , __FILE__ ));
 }
 
+
+
+require_once QCORE_PATH .'/inc/notion-shortcodes/shortcodes.php';
 
 
 

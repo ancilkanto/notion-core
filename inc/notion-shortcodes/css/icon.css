@@ -1,0 +1,9 @@
+.sc-icon{
+	background-position: center center !important;
+    background-size: 50px auto !important;
+    background-repeat: no-repeat !important;
+}
+.sc-icon-text-block{
+	background-image: url('../icons/text-block.png') !important;
+}
+
