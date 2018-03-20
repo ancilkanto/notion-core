@@ -333,10 +333,10 @@
         wp_media_frame.on( 'select', function() {
 
           var attachment = wp_media_frame.state().get('selection').first().attributes;
-          var thumbnail = ( typeof attachment.sizes !== 'undefined' && typeof attachment.sizes.thumbnail !== 'undefined' ) ? attachment.sizes.thumbnail.url : attachment.url;
+          var full = ( typeof attachment.sizes !== 'undefined' && typeof attachment.sizes.full !== 'undefined' ) ? attachment.sizes.full.url : attachment.url;
 
           $preview.removeClass('hidden');
-          $img.attr('src', thumbnail);
+          $img.attr('src', full);
           $input.val( attachment.id ).trigger('change');
 
         });
@@ -563,6 +563,7 @@
 
       field_groups.on('click', '.cs-remove-group', function(e) {
         e.preventDefault();
+        if(confirm("Are you sure?"))
         $(this).closest('.cs-group').remove();
       });
 
