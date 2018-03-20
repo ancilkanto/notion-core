@@ -76,8 +76,7 @@ function quadnotion_addon_admin_scripts(){
 function quadnotion_addon_admin_styles(){
 	
 	
-	
-	
+
 	wp_enqueue_style("quadnotion-main-style", plugins_url('css/main.css' , __FILE__ ));
 }
 
