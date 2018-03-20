@@ -33,12 +33,20 @@ add_filter( 'the_content', function( $content ) use ( $br ) {
 }, 10 );
 
 
+
+
+
+// ADD SHORTCODES HERE
+
 if ( is_plugin_active( 'kingcomposer/kingcomposer.php' ) ){
 
     require_once ('shortcodes/text-block.php');
-    
+    require_once ('shortcodes/Liner.php');
 
 }
+
+
+
 
 // Check If King Composer is activate
 function notion_core_user_required_plugin() {

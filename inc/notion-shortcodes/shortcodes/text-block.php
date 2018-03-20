@@ -15,6 +15,7 @@ function notion_text_block_init(){
                 'icon' => 'sc-icon sc-icon-text-block',
                 'category' => 'Notion',
                 'preview_editable' => true,
+                'admin_view'  => 'text',
                 'is_container' => true,// this line works for the editor section. If it is not here. Content html editor will not work.
                 'pop_height' => 600,
                 'params' => array(
@@ -49,19 +50,6 @@ function notion_text_block_init(){
                           'type' => 'color_param',
                           'options' => notion_get_color_palette(),
                           'description' => 'Choose the text color',
-                      ),
-                      array(
-                          'name' => 'text_align',
-                          'label' => 'Text Align',
-                          'type' => 'select',  // USAGE SELECT TYPE
-                          'options' => array(  // THIS FIELD REQUIRED THE PARAM OPTIONS
-                              'text-left' => __('Left', 'notion'),
-                              'text-center' => __('Center', 'notion'),
-                              'text-right' => __('Right', 'notion'),
-                              'text-justify' => __('Justify', 'notion')
-                          ),
-                          'value' => 'left', // remove this if you do not need a default content 
-                          'description' => 'Choose the text alignment.',
                       ),
                       array(
                           'name' => 'class',
@@ -108,37 +96,79 @@ function notion_text_block_init(){
                               'options' => array(    // REQUIRED
                                 'min' => 100,
                                 'max' => 900,
-                                'unit' => '',
+                                'unit' => ' ',
                                 'step' => 100,
                                 'show_input' => true
                               ),
                               "description" => __("Specify the font weight.", 'notion')
                         ),
                         array(
-                            'name' => 'font_case',
-                            'label' => 'Text Transform',
-                            'type' => 'select',  // USAGE SELECT TYPE
-                            'options' => array(  // THIS FIELD REQUIRED THE PARAM OPTIONS
-                                '' => __('Normal', 'notion'),
-                                'uppercase' => __('Uppercase', 'notion'),
-                                'lowercase' => __('Lowercase', 'notion')
+                            'name' => 'text_properties',
+                            'type' => 'css',
+                            'options' => array(
+                              array(
+                                'screens' => 'any',
+                                'Text Properties' => array(
+                                  array(
+                                    'property' => 'text-align',
+                                    'label' => 'Text Align',
+                                    'selector' => '.text-block-element'
+                                  ),
+                                  array(
+                                    'property' => 'text-transform',
+                                    'label' => 'Text Transform',
+                                    'selector' => '.text-block-element'
+                                  ),
+                                  array(
+                                    'property' => 'font-style',
+                                    'label' => 'Text Style',
+                                    'selector' => '.text-block-element'
+                                  ),
+                                  array(
+                                    'property' => 'text-decoration',
+                                    'label' => 'Text Decoration',
+                                    'selector' => '.text-block-inner'
+                                  )
+                                ),
+                                
+                              ),
                             ),
-                            'value' => '', // remove this if you do not need a default content 
-                            'description' => 'Choose the text case.',
                         ),
+                        
                         
                     ),
                     'styling' => array(
+                        array(
+                            'name' => 'enable_bg',
+                            'label' => 'Enable Background',
+                            'type' => 'toggle',
+                        ),
+                    
+                        array(
+                          'name' => 'bg_color',
+                          'label' => 'Background Color',
+                          'type' => 'color_param',
+                          'options' => notion_get_color_palette(),
+                          'description' => 'Choose the background color',
+                          'relation' => array(
+                              'parent'    => 'enable_bg',
+                              'show_when' => 'yes'
+                          )
+                        ),
                         array(
                             'name'      => 'css_custom',
                             'type'      => 'css',
                             'options'   => array(
                                 array(
+                                    'screens' => 'any, 1024, 999, 767, 479',
+                                    //Background group
+                                    // 'Background' => array(
+                                    //   array('property' => 'background', 'label' => 'Background', 'selector' => '.text-block-inner'),
+                                    // ),
                                     'Box'    => array(
-                                        array('property' => 'background', 'label' => 'Background'),
-                                        array('property' => 'border', 'label' => 'Border'),
-                                        array('property' => 'padding', 'label' => 'Padding'),
-                                        array('property' => 'margin', 'label' => 'Margin'),
+                                        array('property' => 'border', 'label' => 'Border', 'selector' => '.text-block-inner'),
+                                        array('property' => 'padding', 'label' => 'Padding', 'selector' => '.text-block-inner'),
+                                        array('property' => 'margin', 'label' => 'Margin', 'selector' => '.text-block-inner'),
                                     )
                                 )
                             )
@@ -159,22 +189,23 @@ function notion_text_block_init(){
 function render_notion_text_block($atts, $content = null){
     extract( shortcode_atts( array(
         'semantic' => 'p',
-        'text_align' => 'text-left',
         'font_color' => '',
         'font_size' => '',
         'font_family' => '',
-        'font_case' => '',
         'line_height' => '',
         'letter_spacing' => '',
         'font_wt' => '',
-        'class' => '',
-        'css_custom' => '',
-        'animate' => ''
-
+        'animate' => '',
+        'bg_color' => '',
+        'enable_bg' => 'no',
 
     ), $atts) );
 
+    
     $master_class = apply_filters( 'kc-el-class', $atts );
+    
+    
+    
 
     $content = wp_kses($content, array(
                                     'a' => array(
@@ -189,9 +220,11 @@ function render_notion_text_block($atts, $content = null){
 
                                     ));
 
-    
+    $bg_class = '';
+    if($enable_bg == 'yes')
+      $bg_class = $bg_color.'-bg';
 
-    $output= '<'.$semantic.' class="notion-text-block '.$text_align.' font-weight-'.$font_wt.' '.$letter_spacing.' '.$line_height.' '.$font_color.' '.$font_size.' '.$font_family.' '.$font_case.' '.$class.'"><span class="'.implode(' ', $master_class).'">'.$content.'</span></'.$semantic.'>';
+    $output= '<div class="notion-text-block '.implode(' ', $master_class).'"><'.$semantic.' class="text-block-element font-weight-'.$font_wt.' '.$letter_spacing.' '.$line_height.' '.$font_color.' '.$font_size.' '.$font_family.'"><span class="text-block-inner '.esc_attr($bg_class).'">'.$content.'</span></'.$semantic.'></div>';
 
 
     return $output;
