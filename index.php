@@ -66,7 +66,7 @@ else{
 
 function quadnotion_addon_admin_scripts(){
 	
-	wp_enqueue_script("jquery-ui", 'https://code.jquery.com/ui/1.12.1/jquery-ui.js',array(),false,true);
+	// wp_enqueue_script("jquery-ui", 'https://code.jquery.com/ui/1.12.1/jquery-ui.js',array(),false,true);
 	
 
 	wp_enqueue_script("quadnotion-main-script", plugins_url('js/main.js' , __FILE__ ),array(),false,true);

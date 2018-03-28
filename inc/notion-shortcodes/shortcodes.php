@@ -25,12 +25,6 @@ function notion_core_shortcode_style() {
   }
 
 
-//remove the <p> tag
-remove_filter( 'the_content', 'wpautop' );
-$br = false;
-add_filter( 'the_content', function( $content ) use ( $br ) {
-    return wpautop( $content, $br );
-}, 10 );
 
 
 
@@ -41,7 +35,8 @@ add_filter( 'the_content', function( $content ) use ( $br ) {
 if ( is_plugin_active( 'kingcomposer/kingcomposer.php' ) ){
 
     require_once ('shortcodes/text-block.php');
-    require_once ('shortcodes/Liner.php');
+    require_once ('shortcodes/liner.php');
+    require_once ('shortcodes/button.php');
 
 }
 
@@ -108,3 +103,15 @@ function setup_color_param(){
     <?php
 }
 
+
+
+add_action('init', 'notion_kc_ion_icons');
+function notion_kc_ion_icons() {
+ 
+    if( function_exists( 'kc_add_icon' ) ) {
+ 
+        kc_add_icon( get_template_directory_uri().'/ionicons/css/ionicons-admin.css' );
+ 
+    }
+ 
+}

@@ -1,15 +1,15 @@
 <?php
 
-add_action('init', 'notion_liner_init', 99 );
-function notion_liner_init(){
+add_action('init', 'notion_feature_box_init', 99 );
+function notion_feature_box_init(){
     
     global $kc;
     $kc->add_map(
         array(
-            'notion_liner' => array(
-                'name' => 'Notion Liner',
-                'description' => __('A line seperator', 'kingcomposer'),
-                'icon' => 'sc-icon sc-icon-liner',
+            'notion_feature_box' => array(
+                'name' => 'Notion Feature Box',
+                'description' => __('A block with icon, title and description.', 'kingcomposer'),
+                'icon' => 'sc-icon sc-icon-feature-box',
                 'category' => 'Notion',
                 'params' => array(
                     array(
@@ -77,7 +77,7 @@ function notion_liner_init(){
     );
 } 
 // Register Before After Shortcode
-function render_notion_liner($atts, $content = null){
+function render_notion_feature_box($atts, $content = null){
     extract( shortcode_atts( array(
         'color' => '',
         'width' => '',
@@ -94,11 +94,11 @@ function render_notion_liner($atts, $content = null){
 
     
 
-    $output = '<div class="notion-liner '.implode(' ', $master_class).'">
+    $output = '<div class="notion-feature_box '.implode(' ', $master_class).'">
                   <span class="notion-line '.esc_attr($color).'-bg" style="width:'.esc_attr($width).'; height:'.esc_attr($height).';"></span>
                 </div>';	  
     
     return $output;
 }
 
-add_shortcode('notion_liner', 'render_notion_liner'); 
+add_shortcode('notion_feature_box', 'render_notion_feature_box'); 

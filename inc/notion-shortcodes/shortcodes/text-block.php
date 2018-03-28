@@ -69,8 +69,7 @@ function notion_text_block_init(){
                         array(
                             "label" => __("Font Size", 'notion'),
                             "name" => "font_size",
-                            "value" => __("14px", 'notion'),
-                            'type' => 'select',  // USAGE RADIO TYPE
+                            'type' => 'select',
                             'options' => notion_get_font_size(),
                             "description" => __("Specify the font size.", 'notion')
                         ),
