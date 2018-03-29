@@ -57,6 +57,7 @@ if (!is_admin()) {
 
     add_action( 'wp_enqueue_scripts', 'quadnotion_addon_scripts' );
   //  add_action( 'wp_enqueue_scripts', 'quadnotion_addon_scripts' );
+  	// add_action( 'wp_enqueue_scripts', 'quadnotion_addon_scripts' );
     // add_action( 'wp_enqueue_scripts', 'quadnotion_addon_styles' );
 
 }
