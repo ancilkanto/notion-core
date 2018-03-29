@@ -7,7 +7,7 @@ function notion_liner_init(){
     $kc->add_map(
         array(
             'notion_liner' => array(
-                'name' => 'Liner',
+                'name' => 'Notion Liner',
                 'description' => __('A line seperator', 'kingcomposer'),
                 'icon' => 'sc-icon sc-icon-liner',
                 'category' => 'Notion',

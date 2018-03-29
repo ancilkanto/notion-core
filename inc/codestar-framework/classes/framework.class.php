@@ -330,13 +330,13 @@ class CSFramework extends CSFramework_Abstract {
       echo '<h1>'. $this->settings['framework_title'] .'</h1>';
       echo '<fieldset>';
 
-      echo ( $this->settings['ajax_save'] ) ? '<span id="cs-save-ajax">'. esc_html__( 'Settings saved.', 'cs-framework' ) .'</span>' : '';
+      echo ( $this->settings['ajax_save'] ) ? '<span class="cs-save-warning">'. esc_html__( 'Settings Changed! Please Save.', 'cs-framework' ) .'</span><span id="cs-save-ajax">'. esc_html__( 'Settings saved.', 'cs-framework' ) .'</span>' : '';
 
       submit_button( esc_html__( 'Save', 'cs-framework' ), 'primary cs-save', 'save', false, array( 'data-save' => esc_html__( 'Saving...', 'cs-framework' ) ) );
-      submit_button( esc_html__( 'Restore', 'cs-framework' ), 'secondary cs-restore cs-reset-confirm', $this->unique .'[reset]', false );
+      submit_button( esc_html__( 'Reset Section', 'cs-framework' ), 'secondary cs-restore cs-reset-confirm', $this->unique .'[reset]', false );
 
       if( $this->settings['show_reset_all'] ) {
-        submit_button( esc_html__( 'Reset All Options', 'cs-framework' ), 'secondary cs-restore cs-warning-primary cs-reset-confirm', $this->unique .'[resetall]', false );
+        submit_button( esc_html__( 'Reset All', 'cs-framework' ), 'secondary cs-restore cs-warning-primary cs-reset-confirm', $this->unique .'[resetall]', false );
       }
 
       echo '</fieldset>';

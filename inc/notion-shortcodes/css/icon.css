@@ -11,3 +11,10 @@
 	background-image: url('../icons/minus.png') !important;
 }
 
+.sc-icon-button{
+	background-image: url('../icons/button.png') !important;
+}
+.sc-icon-feature-box{
+	background-image: url('../icons/feature-box.png') !important;	
+}
+

@@ -20,7 +20,7 @@ defined('ABSPATH') or die("Restricted access!");
 
 
 
-defined('QCORE_DIR') or define('QCORE_DIR', dirname(plugin_basename(__FILE__))); 
+defined('QCORE_DIR') or define('QCORE_DIR', dirname(plugin_basename(__FILE__)));
 defined('QCORE_BASE') or define('QCORE_BASE', plugin_basename(__FILE__));
 defined('QCORE_URL') or define('QCORE_URL', plugin_dir_url(__FILE__));
 defined('QCORE_PATH') or define('QCORE_PATH', plugin_dir_path(__FILE__));
@@ -53,9 +53,9 @@ define( 'CS_ACTIVE_SHORTCODE',  false); // default true
 define( 'CS_ACTIVE_CUSTOMIZE',  false); // default true
 
 
-if (!is_admin()) { 
+if (!is_admin()) {
 
-    // add_action( 'wp_enqueue_scripts', 'quadnotion_addon_scripts' );
+    add_action( 'wp_enqueue_scripts', 'quadnotion_addon_scripts' );
     // add_action( 'wp_enqueue_scripts', 'quadnotion_addon_styles' );
 
 }
@@ -65,17 +65,17 @@ else{
 }
 
 function quadnotion_addon_admin_scripts(){
-	
-	wp_enqueue_script("jquery-ui", 'https://code.jquery.com/ui/1.12.1/jquery-ui.js',array(),false,true);
-	
+
+	// wp_enqueue_script("jquery-ui", 'https://code.jquery.com/ui/1.12.1/jquery-ui.js',array(),false,true);
+
 
 	wp_enqueue_script("quadnotion-main-script", plugins_url('js/main.js' , __FILE__ ),array(),false,true);
 }
 
 
 function quadnotion_addon_admin_styles(){
-	
-	
+
+
 
 	wp_enqueue_style("quadnotion-main-style", plugins_url('css/main.css' , __FILE__ ));
 }
@@ -83,12 +83,3 @@ function quadnotion_addon_admin_styles(){
 
 
 require_once QCORE_PATH .'/inc/notion-shortcodes/shortcodes.php';
-
-
-
-
-
-
-
-
-
